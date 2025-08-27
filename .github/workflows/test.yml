@@ -1,0 +1,25 @@
+name: test
+
+on: pull_request # pull_request 트리거가 있을 때 발동
+
+jobs: # 동작
+    test:
+        runs-on: ubuntu-22.04
+        steps:
+            - name: Checkout repository # 코드 불러오기
+              uses: actions/Checkout@v3 
+            - name: Node.js setup       # Node.js 설정
+              uses: actions/setup-node@v3  
+              with: 
+                node-version: "20"
+            - name: Install npm packages 
+              run: npm ci 
+            - name: Install and run redis-server
+              run: |
+                sudo apt-get update 
+                sudo apt-get install -y redis-server
+                redis-server --daemonize yes --requirepass test_env --port 6380
+            - name: Run test
+              run: npm run test:ci
+            - name: test build
+              run: npm run build
