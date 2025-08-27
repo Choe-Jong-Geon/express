@@ -31,5 +31,4 @@ jobs:
                   sudo pkill node || exit 1
                   npm run start & npx wait-on http://localhost
                   exit
-                
                 "
