@@ -28,8 +28,8 @@ jobs:
                   git pull || exit 1
                   npm install || exit 1
                   npm run build || exit 1
-                  sudo pkill -f node || true
-                  nohup npm start > app.log 2>&1 &
-                  npx wait-on http://localhost:80
+                  sudo pkill node || exit 1
+                  npm run start & npx wait-on http://localhost
                   exit
+                
                 "
