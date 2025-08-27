@@ -22,7 +22,8 @@ jobs:
             
             - name: SSH and deploy
               run: |
-                ssh ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_PUBLIC_IP }} "
+                ssh -o StrictHostKeyChecking=no ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_PUBLIC_IP }} "
+                  export PATH=$PATH:/home/ubuntu/.nvm/versions/node/v20.19.4/bin/npm
                   cd express
                   git pull || exit 1
                   npm install || exit 1
