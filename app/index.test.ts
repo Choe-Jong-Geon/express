@@ -18,8 +18,7 @@ beforeEach(async () => {
 });
 
 afterAll(async () => {
-  await client.flushDb();
-  await client.quit();
+  await client.disconnect();
 });
 
 describe("POST /messages", () => {
