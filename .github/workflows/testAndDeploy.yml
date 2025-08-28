@@ -53,7 +53,7 @@ jobs:
             export PATH=$PATH:/home/ubuntu/.nvm/versions/node/v20.19.4/bin
             cd express
             git pull || exit 1
-            npm install || exit 1
+            npm install --include=dev || exit 1
             npm run build || exit 1
             sudo pkill node || exit 1
             nohup npm run start > app.log 2>&1 &

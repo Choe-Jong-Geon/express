@@ -16,6 +16,7 @@ export const createApp = (client: RedisClient) => {
   app.post("/messages", async (request, response) => {
     const { message } = request.body;
     await client.lPush(LIST_KEY, message);
+
     response.status(200).send("Message added to list");
   });
 
