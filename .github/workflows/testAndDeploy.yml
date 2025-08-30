@@ -54,7 +54,7 @@ jobs:
             cd express
             git pull || exit 1
             npm install --include=dev || exit 1
-            npm run build || exit 1
+            npm run build 
             sudo pkill node || exit 1
             nohup npm run start > app.log 2>&1 &
             exit
