@@ -11,6 +11,10 @@ jobs:
     steps:
       - name: Checkout repository # 코드 불러오기
         uses: actions/checkout@v3
+
+      - name: Set up Docker Compose
+        uses: docker/setup-docker-compose@v2
+          
       - name: Build and test with Docker compose
         run: docker-compose -f docker-compose.test.yml up --build --abort-on-container-exit
   
