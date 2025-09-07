@@ -5,6 +5,10 @@ on:
     branches:
       - master
 
+env:
+  AWS_REGION: ap-northeast-2
+
+
 permissions:
   id-token: write # this is required for requesting the JWT
   contents: read # This is required for actions/checkout
@@ -30,7 +34,7 @@ jobs:
         with:
           role-to-assume: arn:aws:iam::044260498537:role/githubChoe-Jong-Geon_express_OIDC
           role-session-name: samepleSessionName
-          
+          aws-region: ${{env.AWS_REGION}}
           
 
        
