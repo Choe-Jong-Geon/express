@@ -51,7 +51,6 @@
         }
     ],
     "cpu": "512",
-    "enableFaultInjection": false,
     "executionRoleArn": "arn:aws:iam::044260498537:role/ecsTaskExecutionRole",
     "family": "my-express",
     "memory": "1024",
