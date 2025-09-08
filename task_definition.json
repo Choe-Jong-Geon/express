@@ -1,0 +1,103 @@
+{
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "containerDefinitions": [
+        {
+            "cpu": 0,
+            "environment": [
+                {
+                    "name": "PORT",
+                    "value": "80"
+                },
+                {
+                    "name": "REDIS_URL",
+                    "value": "redis://redis-6379-tcp.my-express-cluster:6379"
+                }
+            ],
+            "environmentFiles": [],
+            "essential": true,
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/my-express",
+                    "awslogs-create-group": "true",
+                    "awslogs-region": "ap-northeast-2",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
+            "mountPoints": [],
+            "name": "express",
+            "portMappings": [
+                {
+                    "appProtocol": "http",
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "name": "express-80-tcp",
+                    "protocol": "tcp"
+                }
+            ],
+            "secrets": [
+                {
+                    "name": "hello",
+                    "valueFrom": "arn:aws:secretsmanager:ap-northeast-2:044260498537:secret:my-express-secret-rhV7B5:hello::"
+                }
+            ],
+            "systemControls": [],
+            "ulimits": [],
+            "volumesFrom": []
+        }
+    ],
+    "cpu": "512",
+    "enableFaultInjection": false,
+    "executionRoleArn": "arn:aws:iam::044260498537:role/ecsTaskExecutionRole",
+    "family": "my-express",
+    "memory": "1024",
+    "networkMode": "awsvpc",
+    "placementConstraints": [],
+    "registeredAt": "2025-09-05T11:58:17.969Z",
+    "registeredBy": "arn:aws:iam::044260498537:root",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "ecs.capability.secrets.asm.environment-variables"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+        }
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "revision": 8,
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "status": "ACTIVE",
+    "taskDefinitionArn": "arn:aws:ecs:ap-northeast-2:044260498537:task-definition/my-express:8",
+    "volumes": [],
+    "tags": []
+}
